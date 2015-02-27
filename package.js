@@ -1,6 +1,8 @@
 Package.describe({
   name: 'dispatch:time-window',
-  summary: 'Time windows helpers.'
+  summary: 'Parse, validate, manipulate, and display time windows in javascript.',
+  version: '1.0.0',
+  git: 'https://github.com/DispatchMe/meteor-time-window'
 });
 
 Package.onUse(function (api) {
