@@ -15,19 +15,22 @@ var ONE_HOUR = 3600;
  */
 TimeWindow = function (input) {
   if (typeof input === 'string') {
-    var separator = ' - ';
+    // replace the delimiter so we can easily split the parts
+    input = input.replace('-', ':');
 
-    var start = input.substring(0, input.indexOf(separator)).split(':');
-    var end = input.substring(input.indexOf(separator) +
-    separator.length).split(':');
+    var parts = input.split(':');
 
-    this.start = parseInt(start[0]) * ONE_HOUR +
-    parseInt(start[1]) * ONE_MINUTE +
-    parseInt(start[2]);
 
-    this.end = parseInt(end[0]) * ONE_HOUR +
-    parseInt(end[1]) * ONE_MINUTE +
-    parseInt(end[2]);
+    // Since some numbers start with 0 they will be considered as octals.
+    // Make sure to parse the int in base 10.
+    // http://stackoverflow.com/a/12318838/230462
+    this.start = parseInt(parts[0], 10) * ONE_HOUR +
+    parseInt(parts[1], 10) * ONE_MINUTE +
+    parseInt(parts[2], 10);
+
+    this.end = parseInt(parts[3], 10) * ONE_HOUR +
+    parseInt(parts[4], 10) * ONE_MINUTE +
+    parseInt(parts[5], 10);
   } else if (typeof input === 'object') {
     if (input.start instanceof Date) {
       var newStart = new Date(input.start.getFullYear(),
