@@ -1,0 +1,19 @@
+<head>
+  <title>example</title>
+</head>
+
+<body>
+  {{> example}}
+</body>
+
+<template name="example">
+  <input class="timeRange1" placeholder="Time Window 1" value="9:00:00 - 10:00:00">
+  <input class="timeRange2" placeholder="Time Window 2" value="11:00:00 - 12:00:00">
+  <select>
+    <option value="" disabled selected>Select a manipulation...</option>
+    <option value="union">Union</option>
+    <option value="difference">Difference</option>
+    <option value="intersects">Intersects</option>
+  </select>
+  <p>{{result}}</p>
+</template>
